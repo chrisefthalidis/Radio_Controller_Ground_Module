@@ -8,4 +8,4 @@ we send this value via radio to the Flight Controller, which in turn controls th
 
 P.S. This board is not perfect in any way. It has some design mistakes, because it's one of my earlier boards, but
 it WORKS fine. With each board that i design, i learn new stuff and keep getting better. If you have any questions
-about using this board, please contact me at chrisefthalidis@gmail.com
+on how to use this board, please contact me at chrisefthalidis@gmail.com
