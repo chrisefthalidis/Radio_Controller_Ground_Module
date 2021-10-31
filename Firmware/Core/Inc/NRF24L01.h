@@ -9,6 +9,7 @@ Authors: Chris Efthalidis, Vangelis Epanomitis
 
 #include "spi.h"
 
+// Registers
 #define NRF24L01_REG_CONFIG 0x00
 #define NRF24L01_REG_EN_AA 0x01
 #define NRF24L01_REG_EN_RXADDR 0x02
@@ -36,6 +37,7 @@ Authors: Chris Efthalidis, Vangelis Epanomitis
 #define NRF24L01_REG_DYNPD 0x1C
 #define NRF24L01_REG_FEATURE 0x1D
 
+// Commands
 #define NRF24L01_CMD_R_REGISTER 0x00
 #define NRF24L01_CMD_W_REGISTER 0x20
 #define NRF24L01_CMD_R_RX_PAYLOAD 0x61
@@ -48,17 +50,17 @@ Authors: Chris Efthalidis, Vangelis Epanomitis
 #define NRF24L01_CMD_W_TX_PAYLOAD_NOACK 0xB0
 #define NRF24L01_CMD_NOP 0xFF
 
-// Low-level
+// Low-level functions
 void NRF24L01_Read_Register(uint8_t reg_addr, uint8_t *data);
 void NRF24L01_Write_Register(uint8_t reg_addr, uint8_t *data);
 void NRF24L01_Read_Payload(uint8_t *data, uint8_t length);
 void NRF24L01_Write_Payload(uint8_t *data, uint8_t length);
 
-// Initialisation
+// Initialisation functions
 void NRF24L01_Initialise_Tx();
 void NRF24L01_Initialise_Rx();
 
-// Data exchange
+// Data exchange functions
 void NRF24L01_Transmit(uint8_t *data, uint8_t length);
 void NRF24L01_Receive(uint8_t *data, uint8_t length);
 
