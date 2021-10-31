@@ -1,0 +1,10 @@
+{
+    "files.associations": {
+        "*.cpp": "cpp",
+        "*.py": "python",
+        "dense": "c",
+        "stdint.h": "c",
+        "i2c.h": "c",
+        "core": "cpp"
+    }
+}

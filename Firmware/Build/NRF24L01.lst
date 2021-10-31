@@ -1,0 +1,883 @@
+ARM GAS  C:\Users\user-pc\AppData\Local\Temp\ccx6CTGz.s 			page 1
+
+
+   1              		.cpu cortex-m4
+   2              		.eabi_attribute 27, 1
+   3              		.eabi_attribute 28, 1
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 1
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.file	"NRF24L01.c"
+  14              		.text
+  15              	.Ltext0:
+  16              		.cfi_sections	.debug_frame
+  17              		.section	.text.NRF24L01_Read_Register,"ax",%progbits
+  18              		.align	1
+  19              		.global	NRF24L01_Read_Register
+  20              		.arch armv7e-m
+  21              		.syntax unified
+  22              		.thumb
+  23              		.thumb_func
+  24              		.fpu fpv4-sp-d16
+  26              	NRF24L01_Read_Register:
+  27              	.LVL0:
+  28              	.LFB216:
+  29              		.file 1 "Core/Src/NRF24L01.c"
+   1:Core/Src/NRF24L01.c **** #include "NRF24L01.h"
+   2:Core/Src/NRF24L01.c **** 
+   3:Core/Src/NRF24L01.c **** // Important Note: Everything through SPI commands only
+   4:Core/Src/NRF24L01.c **** 
+   5:Core/Src/NRF24L01.c **** void NRF24L01_Read_Register(uint8_t reg_addr, uint8_t *data)
+   6:Core/Src/NRF24L01.c **** {
+  30              		.loc 1 6 1 view -0
+  31              		.cfi_startproc
+  32              		@ args = 0, pretend = 0, frame = 8
+  33              		@ frame_needed = 0, uses_anonymous_args = 0
+  34              		.loc 1 6 1 is_stmt 0 view .LVU1
+  35 0000 30B5     		push	{r4, r5, lr}
+  36              	.LCFI0:
+  37              		.cfi_def_cfa_offset 12
+  38              		.cfi_offset 4, -12
+  39              		.cfi_offset 5, -8
+  40              		.cfi_offset 14, -4
+  41 0002 85B0     		sub	sp, sp, #20
+  42              	.LCFI1:
+  43              		.cfi_def_cfa_offset 32
+  44 0004 0C46     		mov	r4, r1
+  45 0006 8DF80F00 		strb	r0, [sp, #15]
+   7:Core/Src/NRF24L01.c ****     HAL_GPIO_WritePin(GPIOB, GPIO_PIN_8, GPIO_PIN_RESET); // CSN pin low to begin the transaction
+  46              		.loc 1 7 5 is_stmt 1 view .LVU2
+  47 000a 0C4D     		ldr	r5, .L3
+  48 000c 0022     		movs	r2, #0
+  49 000e 4FF48071 		mov	r1, #256
+  50              	.LVL1:
+  51              		.loc 1 7 5 is_stmt 0 view .LVU3
+ARM GAS  C:\Users\user-pc\AppData\Local\Temp\ccx6CTGz.s 			page 2
+
+
+  52 0012 2846     		mov	r0, r5
+  53              	.LVL2:
+  54              		.loc 1 7 5 view .LVU4
+  55 0014 FFF7FEFF 		bl	HAL_GPIO_WritePin
+  56              	.LVL3:
+   8:Core/Src/NRF24L01.c ****     HAL_SPI_TransmitReceive(&hspi3, &reg_addr, data, 1, HAL_MAX_DELAY);
+  57              		.loc 1 8 5 is_stmt 1 view .LVU5
+  58 0018 4FF0FF33 		mov	r3, #-1
+  59 001c 0093     		str	r3, [sp]
+  60 001e 0123     		movs	r3, #1
+  61 0020 2246     		mov	r2, r4
+  62 0022 0DF10F01 		add	r1, sp, #15
+  63 0026 0648     		ldr	r0, .L3+4
+  64 0028 FFF7FEFF 		bl	HAL_SPI_TransmitReceive
+  65              	.LVL4:
+   9:Core/Src/NRF24L01.c ****     HAL_GPIO_WritePin(GPIOB, GPIO_PIN_8, GPIO_PIN_SET); // CSN pin high to end the transaction
+  66              		.loc 1 9 5 view .LVU6
+  67 002c 0122     		movs	r2, #1
+  68 002e 4FF48071 		mov	r1, #256
+  69 0032 2846     		mov	r0, r5
+  70 0034 FFF7FEFF 		bl	HAL_GPIO_WritePin
+  71              	.LVL5:
+  10:Core/Src/NRF24L01.c **** }
+  72              		.loc 1 10 1 is_stmt 0 view .LVU7
+  73 0038 05B0     		add	sp, sp, #20
+  74              	.LCFI2:
+  75              		.cfi_def_cfa_offset 12
+  76              		@ sp needed
+  77 003a 30BD     		pop	{r4, r5, pc}
+  78              	.LVL6:
+  79              	.L4:
+  80              		.loc 1 10 1 view .LVU8
+  81              		.align	2
+  82              	.L3:
+  83 003c 00040240 		.word	1073873920
+  84 0040 00000000 		.word	hspi3
+  85              		.cfi_endproc
+  86              	.LFE216:
+  88              		.section	.text.NRF24L01_Write_Register,"ax",%progbits
+  89              		.align	1
+  90              		.global	NRF24L01_Write_Register
+  91              		.syntax unified
+  92              		.thumb
+  93              		.thumb_func
+  94              		.fpu fpv4-sp-d16
+  96              	NRF24L01_Write_Register:
+  97              	.LVL7:
+  98              	.LFB217:
+  11:Core/Src/NRF24L01.c **** 
+  12:Core/Src/NRF24L01.c **** void NRF24L01_Write_Register(uint8_t reg_addr, uint8_t *data)
+  13:Core/Src/NRF24L01.c **** {
+  99              		.loc 1 13 1 is_stmt 1 view -0
+ 100              		.cfi_startproc
+ 101              		@ args = 0, pretend = 0, frame = 8
+ 102              		@ frame_needed = 0, uses_anonymous_args = 0
+ 103              		.loc 1 13 1 is_stmt 0 view .LVU10
+ 104 0000 10B5     		push	{r4, lr}
+ARM GAS  C:\Users\user-pc\AppData\Local\Temp\ccx6CTGz.s 			page 3
+
+
+ 105              	.LCFI3:
+ 106              		.cfi_def_cfa_offset 8
+ 107              		.cfi_offset 4, -8
+ 108              		.cfi_offset 14, -4
+ 109 0002 82B0     		sub	sp, sp, #8
+ 110              	.LCFI4:
+ 111              		.cfi_def_cfa_offset 16
+  14:Core/Src/NRF24L01.c ****     uint8_t reg_plus_data[2] = {NRF24L01_CMD_W_REGISTER | reg_addr, *data}; // Merge register addre
+ 112              		.loc 1 14 5 is_stmt 1 view .LVU11
+ 113              		.loc 1 14 13 is_stmt 0 view .LVU12
+ 114 0004 40F02000 		orr	r0, r0, #32
+ 115              	.LVL8:
+ 116              		.loc 1 14 13 view .LVU13
+ 117 0008 8DF80400 		strb	r0, [sp, #4]
+ 118              		.loc 1 14 69 view .LVU14
+ 119 000c 0B78     		ldrb	r3, [r1]	@ zero_extendqisi2
+ 120              		.loc 1 14 13 view .LVU15
+ 121 000e 8DF80530 		strb	r3, [sp, #5]
+  15:Core/Src/NRF24L01.c **** 
+  16:Core/Src/NRF24L01.c ****     HAL_GPIO_WritePin(GPIOB, GPIO_PIN_8, GPIO_PIN_RESET);
+ 122              		.loc 1 16 5 is_stmt 1 view .LVU16
+ 123 0012 0B4C     		ldr	r4, .L7
+ 124 0014 0022     		movs	r2, #0
+ 125 0016 4FF48071 		mov	r1, #256
+ 126              	.LVL9:
+ 127              		.loc 1 16 5 is_stmt 0 view .LVU17
+ 128 001a 2046     		mov	r0, r4
+ 129 001c FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 130              	.LVL10:
+  17:Core/Src/NRF24L01.c ****     HAL_SPI_Transmit(&hspi3, reg_plus_data, sizeof(reg_plus_data), HAL_MAX_DELAY);
+ 131              		.loc 1 17 5 is_stmt 1 view .LVU18
+ 132 0020 4FF0FF33 		mov	r3, #-1
+ 133 0024 0222     		movs	r2, #2
+ 134 0026 01A9     		add	r1, sp, #4
+ 135 0028 0648     		ldr	r0, .L7+4
+ 136 002a FFF7FEFF 		bl	HAL_SPI_Transmit
+ 137              	.LVL11:
+  18:Core/Src/NRF24L01.c ****     HAL_GPIO_WritePin(GPIOB, GPIO_PIN_8, GPIO_PIN_SET);
+ 138              		.loc 1 18 5 view .LVU19
+ 139 002e 0122     		movs	r2, #1
+ 140 0030 4FF48071 		mov	r1, #256
+ 141 0034 2046     		mov	r0, r4
+ 142 0036 FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 143              	.LVL12:
+  19:Core/Src/NRF24L01.c **** }
+ 144              		.loc 1 19 1 is_stmt 0 view .LVU20
+ 145 003a 02B0     		add	sp, sp, #8
+ 146              	.LCFI5:
+ 147              		.cfi_def_cfa_offset 8
+ 148              		@ sp needed
+ 149 003c 10BD     		pop	{r4, pc}
+ 150              	.L8:
+ 151 003e 00BF     		.align	2
+ 152              	.L7:
+ 153 0040 00040240 		.word	1073873920
+ 154 0044 00000000 		.word	hspi3
+ 155              		.cfi_endproc
+ARM GAS  C:\Users\user-pc\AppData\Local\Temp\ccx6CTGz.s 			page 4
+
+
+ 156              	.LFE217:
+ 158              		.section	.text.NRF24L01_Read_Payload,"ax",%progbits
+ 159              		.align	1
+ 160              		.global	NRF24L01_Read_Payload
+ 161              		.syntax unified
+ 162              		.thumb
+ 163              		.thumb_func
+ 164              		.fpu fpv4-sp-d16
+ 166              	NRF24L01_Read_Payload:
+ 167              	.LVL13:
+ 168              	.LFB218:
+  20:Core/Src/NRF24L01.c **** 
+  21:Core/Src/NRF24L01.c **** void NRF24L01_Read_Payload(uint8_t *data, uint8_t length)
+  22:Core/Src/NRF24L01.c **** {
+ 169              		.loc 1 22 1 is_stmt 1 view -0
+ 170              		.cfi_startproc
+ 171              		@ args = 0, pretend = 0, frame = 8
+ 172              		@ frame_needed = 0, uses_anonymous_args = 0
+ 173              		.loc 1 22 1 is_stmt 0 view .LVU22
+ 174 0000 70B5     		push	{r4, r5, r6, lr}
+ 175              	.LCFI6:
+ 176              		.cfi_def_cfa_offset 16
+ 177              		.cfi_offset 4, -16
+ 178              		.cfi_offset 5, -12
+ 179              		.cfi_offset 6, -8
+ 180              		.cfi_offset 14, -4
+ 181 0002 82B0     		sub	sp, sp, #8
+ 182              	.LCFI7:
+ 183              		.cfi_def_cfa_offset 24
+ 184 0004 0646     		mov	r6, r0
+ 185 0006 0D46     		mov	r5, r1
+  23:Core/Src/NRF24L01.c ****     uint8_t cmd = NRF24L01_CMD_R_RX_PAYLOAD;
+ 186              		.loc 1 23 5 is_stmt 1 view .LVU23
+ 187              		.loc 1 23 13 is_stmt 0 view .LVU24
+ 188 0008 6123     		movs	r3, #97
+ 189 000a 8DF80730 		strb	r3, [sp, #7]
+  24:Core/Src/NRF24L01.c **** 
+  25:Core/Src/NRF24L01.c ****     HAL_GPIO_WritePin(GPIOB, GPIO_PIN_8, GPIO_PIN_RESET);
+ 190              		.loc 1 25 5 is_stmt 1 view .LVU25
+ 191 000e 0022     		movs	r2, #0
+ 192 0010 4FF48071 		mov	r1, #256
+ 193              	.LVL14:
+ 194              		.loc 1 25 5 is_stmt 0 view .LVU26
+ 195 0014 0F48     		ldr	r0, .L13
+ 196              	.LVL15:
+ 197              		.loc 1 25 5 view .LVU27
+ 198 0016 FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 199              	.LVL16:
+  26:Core/Src/NRF24L01.c ****     HAL_SPI_Transmit(&hspi3, &cmd, 1, HAL_MAX_DELAY); // First, send the R_RX_PAYLOAD command
+ 200              		.loc 1 26 5 is_stmt 1 view .LVU28
+ 201 001a 4FF0FF33 		mov	r3, #-1
+ 202 001e 0122     		movs	r2, #1
+ 203 0020 0DF10701 		add	r1, sp, #7
+ 204 0024 0C48     		ldr	r0, .L13+4
+ 205 0026 FFF7FEFF 		bl	HAL_SPI_Transmit
+ 206              	.LVL17:
+  27:Core/Src/NRF24L01.c **** 
+ARM GAS  C:\Users\user-pc\AppData\Local\Temp\ccx6CTGz.s 			page 5
+
+
+  28:Core/Src/NRF24L01.c ****     for (uint8_t i = 0; i < length; i++)
+ 207              		.loc 1 28 5 view .LVU29
+ 208              	.LBB2:
+ 209              		.loc 1 28 10 view .LVU30
+ 210              		.loc 1 28 18 is_stmt 0 view .LVU31
+ 211 002a 0024     		movs	r4, #0
+ 212              		.loc 1 28 5 view .LVU32
+ 213 002c 08E0     		b	.L10
+ 214              	.LVL18:
+ 215              	.L11:
+  29:Core/Src/NRF24L01.c ****         HAL_SPI_Receive(&hspi3, &data[i], 1, HAL_MAX_DELAY); // Read multiple bytes from RX FIFO
+ 216              		.loc 1 29 9 is_stmt 1 discriminator 3 view .LVU33
+ 217 002e 4FF0FF33 		mov	r3, #-1
+ 218 0032 0122     		movs	r2, #1
+ 219 0034 3119     		adds	r1, r6, r4
+ 220 0036 0848     		ldr	r0, .L13+4
+ 221 0038 FFF7FEFF 		bl	HAL_SPI_Receive
+ 222              	.LVL19:
+  28:Core/Src/NRF24L01.c ****         HAL_SPI_Receive(&hspi3, &data[i], 1, HAL_MAX_DELAY); // Read multiple bytes from RX FIFO
+ 223              		.loc 1 28 37 discriminator 3 view .LVU34
+  28:Core/Src/NRF24L01.c ****         HAL_SPI_Receive(&hspi3, &data[i], 1, HAL_MAX_DELAY); // Read multiple bytes from RX FIFO
+ 224              		.loc 1 28 38 is_stmt 0 discriminator 3 view .LVU35
+ 225 003c 0134     		adds	r4, r4, #1
+ 226              	.LVL20:
+  28:Core/Src/NRF24L01.c ****         HAL_SPI_Receive(&hspi3, &data[i], 1, HAL_MAX_DELAY); // Read multiple bytes from RX FIFO
+ 227              		.loc 1 28 38 discriminator 3 view .LVU36
+ 228 003e E4B2     		uxtb	r4, r4
+ 229              	.LVL21:
+ 230              	.L10:
+  28:Core/Src/NRF24L01.c ****         HAL_SPI_Receive(&hspi3, &data[i], 1, HAL_MAX_DELAY); // Read multiple bytes from RX FIFO
+ 231              		.loc 1 28 25 is_stmt 1 discriminator 1 view .LVU37
+  28:Core/Src/NRF24L01.c ****         HAL_SPI_Receive(&hspi3, &data[i], 1, HAL_MAX_DELAY); // Read multiple bytes from RX FIFO
+ 232              		.loc 1 28 5 is_stmt 0 discriminator 1 view .LVU38
+ 233 0040 AC42     		cmp	r4, r5
+ 234 0042 F4D3     		bcc	.L11
+ 235              	.LBE2:
+  30:Core/Src/NRF24L01.c **** 
+  31:Core/Src/NRF24L01.c ****     HAL_GPIO_WritePin(GPIOB, GPIO_PIN_8, GPIO_PIN_SET);
+ 236              		.loc 1 31 5 is_stmt 1 view .LVU39
+ 237 0044 0122     		movs	r2, #1
+ 238 0046 4FF48071 		mov	r1, #256
+ 239 004a 0248     		ldr	r0, .L13
+ 240 004c FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 241              	.LVL22:
+  32:Core/Src/NRF24L01.c **** }
+ 242              		.loc 1 32 1 is_stmt 0 view .LVU40
+ 243 0050 02B0     		add	sp, sp, #8
+ 244              	.LCFI8:
+ 245              		.cfi_def_cfa_offset 16
+ 246              		@ sp needed
+ 247 0052 70BD     		pop	{r4, r5, r6, pc}
+ 248              	.LVL23:
+ 249              	.L14:
+ 250              		.loc 1 32 1 view .LVU41
+ 251              		.align	2
+ 252              	.L13:
+ 253 0054 00040240 		.word	1073873920
+ARM GAS  C:\Users\user-pc\AppData\Local\Temp\ccx6CTGz.s 			page 6
+
+
+ 254 0058 00000000 		.word	hspi3
+ 255              		.cfi_endproc
+ 256              	.LFE218:
+ 258              		.section	.text.NRF24L01_Write_Payload,"ax",%progbits
+ 259              		.align	1
+ 260              		.global	NRF24L01_Write_Payload
+ 261              		.syntax unified
+ 262              		.thumb
+ 263              		.thumb_func
+ 264              		.fpu fpv4-sp-d16
+ 266              	NRF24L01_Write_Payload:
+ 267              	.LVL24:
+ 268              	.LFB219:
+  33:Core/Src/NRF24L01.c **** 
+  34:Core/Src/NRF24L01.c **** void NRF24L01_Write_Payload(uint8_t *data, uint8_t length)
+  35:Core/Src/NRF24L01.c **** {
+ 269              		.loc 1 35 1 is_stmt 1 view -0
+ 270              		.cfi_startproc
+ 271              		@ args = 0, pretend = 0, frame = 8
+ 272              		@ frame_needed = 0, uses_anonymous_args = 0
+ 273              		.loc 1 35 1 is_stmt 0 view .LVU43
+ 274 0000 70B5     		push	{r4, r5, r6, lr}
+ 275              	.LCFI9:
+ 276              		.cfi_def_cfa_offset 16
+ 277              		.cfi_offset 4, -16
+ 278              		.cfi_offset 5, -12
+ 279              		.cfi_offset 6, -8
+ 280              		.cfi_offset 14, -4
+ 281 0002 82B0     		sub	sp, sp, #8
+ 282              	.LCFI10:
+ 283              		.cfi_def_cfa_offset 24
+ 284 0004 0646     		mov	r6, r0
+ 285 0006 0D46     		mov	r5, r1
+  36:Core/Src/NRF24L01.c ****     uint8_t cmd = NRF24L01_CMD_W_TX_PAYLOAD;
+ 286              		.loc 1 36 5 is_stmt 1 view .LVU44
+ 287              		.loc 1 36 13 is_stmt 0 view .LVU45
+ 288 0008 A023     		movs	r3, #160
+ 289 000a 8DF80730 		strb	r3, [sp, #7]
+  37:Core/Src/NRF24L01.c **** 
+  38:Core/Src/NRF24L01.c ****     HAL_GPIO_WritePin(GPIOB, GPIO_PIN_8, GPIO_PIN_RESET);
+ 290              		.loc 1 38 5 is_stmt 1 view .LVU46
+ 291 000e 0022     		movs	r2, #0
+ 292 0010 4FF48071 		mov	r1, #256
+ 293              	.LVL25:
+ 294              		.loc 1 38 5 is_stmt 0 view .LVU47
+ 295 0014 0F48     		ldr	r0, .L19
+ 296              	.LVL26:
+ 297              		.loc 1 38 5 view .LVU48
+ 298 0016 FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 299              	.LVL27:
+  39:Core/Src/NRF24L01.c ****     HAL_SPI_Transmit(&hspi3, &cmd, 1, HAL_MAX_DELAY); // First, send the W_TX_PAYLOAD command
+ 300              		.loc 1 39 5 is_stmt 1 view .LVU49
+ 301 001a 4FF0FF33 		mov	r3, #-1
+ 302 001e 0122     		movs	r2, #1
+ 303 0020 0DF10701 		add	r1, sp, #7
+ 304 0024 0C48     		ldr	r0, .L19+4
+ 305 0026 FFF7FEFF 		bl	HAL_SPI_Transmit
+ARM GAS  C:\Users\user-pc\AppData\Local\Temp\ccx6CTGz.s 			page 7
+
+
+ 306              	.LVL28:
+  40:Core/Src/NRF24L01.c **** 
+  41:Core/Src/NRF24L01.c ****     for (uint8_t i = 0; i < length; i++)
+ 307              		.loc 1 41 5 view .LVU50
+ 308              	.LBB3:
+ 309              		.loc 1 41 10 view .LVU51
+ 310              		.loc 1 41 18 is_stmt 0 view .LVU52
+ 311 002a 0024     		movs	r4, #0
+ 312              		.loc 1 41 5 view .LVU53
+ 313 002c 08E0     		b	.L16
+ 314              	.LVL29:
+ 315              	.L17:
+  42:Core/Src/NRF24L01.c ****         HAL_SPI_Transmit(&hspi3, &data[i], 1, HAL_MAX_DELAY); // Write multiple bytes to TX FIFO
+ 316              		.loc 1 42 9 is_stmt 1 discriminator 3 view .LVU54
+ 317 002e 4FF0FF33 		mov	r3, #-1
+ 318 0032 0122     		movs	r2, #1
+ 319 0034 3119     		adds	r1, r6, r4
+ 320 0036 0848     		ldr	r0, .L19+4
+ 321 0038 FFF7FEFF 		bl	HAL_SPI_Transmit
+ 322              	.LVL30:
+  41:Core/Src/NRF24L01.c ****         HAL_SPI_Transmit(&hspi3, &data[i], 1, HAL_MAX_DELAY); // Write multiple bytes to TX FIFO
+ 323              		.loc 1 41 37 discriminator 3 view .LVU55
+  41:Core/Src/NRF24L01.c ****         HAL_SPI_Transmit(&hspi3, &data[i], 1, HAL_MAX_DELAY); // Write multiple bytes to TX FIFO
+ 324              		.loc 1 41 38 is_stmt 0 discriminator 3 view .LVU56
+ 325 003c 0134     		adds	r4, r4, #1
+ 326              	.LVL31:
+  41:Core/Src/NRF24L01.c ****         HAL_SPI_Transmit(&hspi3, &data[i], 1, HAL_MAX_DELAY); // Write multiple bytes to TX FIFO
+ 327              		.loc 1 41 38 discriminator 3 view .LVU57
+ 328 003e E4B2     		uxtb	r4, r4
+ 329              	.LVL32:
+ 330              	.L16:
+  41:Core/Src/NRF24L01.c ****         HAL_SPI_Transmit(&hspi3, &data[i], 1, HAL_MAX_DELAY); // Write multiple bytes to TX FIFO
+ 331              		.loc 1 41 25 is_stmt 1 discriminator 1 view .LVU58
+  41:Core/Src/NRF24L01.c ****         HAL_SPI_Transmit(&hspi3, &data[i], 1, HAL_MAX_DELAY); // Write multiple bytes to TX FIFO
+ 332              		.loc 1 41 5 is_stmt 0 discriminator 1 view .LVU59
+ 333 0040 AC42     		cmp	r4, r5
+ 334 0042 F4D3     		bcc	.L17
+ 335              	.LBE3:
+  43:Core/Src/NRF24L01.c **** 
+  44:Core/Src/NRF24L01.c ****     HAL_GPIO_WritePin(GPIOB, GPIO_PIN_8, GPIO_PIN_SET);
+ 336              		.loc 1 44 5 is_stmt 1 view .LVU60
+ 337 0044 0122     		movs	r2, #1
+ 338 0046 4FF48071 		mov	r1, #256
+ 339 004a 0248     		ldr	r0, .L19
+ 340 004c FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 341              	.LVL33:
+  45:Core/Src/NRF24L01.c **** }
+ 342              		.loc 1 45 1 is_stmt 0 view .LVU61
+ 343 0050 02B0     		add	sp, sp, #8
+ 344              	.LCFI11:
+ 345              		.cfi_def_cfa_offset 16
+ 346              		@ sp needed
+ 347 0052 70BD     		pop	{r4, r5, r6, pc}
+ 348              	.LVL34:
+ 349              	.L20:
+ 350              		.loc 1 45 1 view .LVU62
+ 351              		.align	2
+ARM GAS  C:\Users\user-pc\AppData\Local\Temp\ccx6CTGz.s 			page 8
+
+
+ 352              	.L19:
+ 353 0054 00040240 		.word	1073873920
+ 354 0058 00000000 		.word	hspi3
+ 355              		.cfi_endproc
+ 356              	.LFE219:
+ 358              		.section	.text.NRF24L01_Initialise_Tx,"ax",%progbits
+ 359              		.align	1
+ 360              		.global	NRF24L01_Initialise_Tx
+ 361              		.syntax unified
+ 362              		.thumb
+ 363              		.thumb_func
+ 364              		.fpu fpv4-sp-d16
+ 366              	NRF24L01_Initialise_Tx:
+ 367              	.LFB220:
+  46:Core/Src/NRF24L01.c **** 
+  47:Core/Src/NRF24L01.c **** void NRF24L01_Initialise_Tx()
+  48:Core/Src/NRF24L01.c **** {
+ 368              		.loc 1 48 1 is_stmt 1 view -0
+ 369              		.cfi_startproc
+ 370              		@ args = 0, pretend = 0, frame = 8
+ 371              		@ frame_needed = 0, uses_anonymous_args = 0
+ 372 0000 10B5     		push	{r4, lr}
+ 373              	.LCFI12:
+ 374              		.cfi_def_cfa_offset 8
+ 375              		.cfi_offset 4, -8
+ 376              		.cfi_offset 14, -4
+ 377 0002 82B0     		sub	sp, sp, #8
+ 378              	.LCFI13:
+ 379              		.cfi_def_cfa_offset 16
+  49:Core/Src/NRF24L01.c ****     uint8_t data;
+ 380              		.loc 1 49 5 view .LVU64
+  50:Core/Src/NRF24L01.c **** 
+  51:Core/Src/NRF24L01.c ****     // The first register must be written twice because of SPI quirk
+  52:Core/Src/NRF24L01.c ****     data = 0x0A; // Power up, TX mode, 1 byte CRC
+ 381              		.loc 1 52 5 view .LVU65
+ 382              		.loc 1 52 10 is_stmt 0 view .LVU66
+ 383 0004 0A23     		movs	r3, #10
+ 384 0006 8DF80730 		strb	r3, [sp, #7]
+  53:Core/Src/NRF24L01.c ****     NRF24L01_Write_Register(NRF24L01_REG_CONFIG, &data);
+ 385              		.loc 1 53 5 is_stmt 1 view .LVU67
+ 386 000a 0DF10701 		add	r1, sp, #7
+ 387 000e 0020     		movs	r0, #0
+ 388 0010 FFF7FEFF 		bl	NRF24L01_Write_Register
+ 389              	.LVL35:
+  54:Core/Src/NRF24L01.c ****     NRF24L01_Write_Register(NRF24L01_REG_CONFIG, &data);
+ 390              		.loc 1 54 5 view .LVU68
+ 391 0014 0DF10701 		add	r1, sp, #7
+ 392 0018 0020     		movs	r0, #0
+ 393 001a FFF7FEFF 		bl	NRF24L01_Write_Register
+ 394              	.LVL36:
+  55:Core/Src/NRF24L01.c **** 
+  56:Core/Src/NRF24L01.c ****     data = 0x01; // Enable auto-acknowledgement for pipe 0
+ 395              		.loc 1 56 5 view .LVU69
+ 396              		.loc 1 56 10 is_stmt 0 view .LVU70
+ 397 001e 0124     		movs	r4, #1
+ 398 0020 8DF80740 		strb	r4, [sp, #7]
+  57:Core/Src/NRF24L01.c ****     NRF24L01_Write_Register(NRF24L01_REG_EN_AA, &data);
+ARM GAS  C:\Users\user-pc\AppData\Local\Temp\ccx6CTGz.s 			page 9
+
+
+ 399              		.loc 1 57 5 is_stmt 1 view .LVU71
+ 400 0024 0DF10701 		add	r1, sp, #7
+ 401 0028 2046     		mov	r0, r4
+ 402 002a FFF7FEFF 		bl	NRF24L01_Write_Register
+ 403              	.LVL37:
+  58:Core/Src/NRF24L01.c **** 
+  59:Core/Src/NRF24L01.c ****     data = 0x01; // Enable pipe 0
+ 404              		.loc 1 59 5 view .LVU72
+ 405              		.loc 1 59 10 is_stmt 0 view .LVU73
+ 406 002e 8DF80740 		strb	r4, [sp, #7]
+  60:Core/Src/NRF24L01.c ****     NRF24L01_Write_Register(NRF24L01_REG_EN_RXADDR, &data);
+ 407              		.loc 1 60 5 is_stmt 1 view .LVU74
+ 408 0032 0DF10701 		add	r1, sp, #7
+ 409 0036 0220     		movs	r0, #2
+ 410 0038 FFF7FEFF 		bl	NRF24L01_Write_Register
+ 411              	.LVL38:
+  61:Core/Src/NRF24L01.c **** 
+  62:Core/Src/NRF24L01.c ****     data = 0x01; // 1 re-transmission after 250us
+ 412              		.loc 1 62 5 view .LVU75
+ 413              		.loc 1 62 10 is_stmt 0 view .LVU76
+ 414 003c 8DF80740 		strb	r4, [sp, #7]
+  63:Core/Src/NRF24L01.c ****     NRF24L01_Write_Register(NRF24L01_REG_SETUP_RETR, &data);
+ 415              		.loc 1 63 5 is_stmt 1 view .LVU77
+ 416 0040 0DF10701 		add	r1, sp, #7
+ 417 0044 0420     		movs	r0, #4
+ 418 0046 FFF7FEFF 		bl	NRF24L01_Write_Register
+ 419              	.LVL39:
+  64:Core/Src/NRF24L01.c **** 
+  65:Core/Src/NRF24L01.c ****     data = 0x06; // 1Mbps data rate, 0dBm output power
+ 420              		.loc 1 65 5 view .LVU78
+ 421              		.loc 1 65 10 is_stmt 0 view .LVU79
+ 422 004a 0620     		movs	r0, #6
+ 423 004c 8DF80700 		strb	r0, [sp, #7]
+  66:Core/Src/NRF24L01.c ****     NRF24L01_Write_Register(NRF24L01_REG_RF_SETUP, &data);
+ 424              		.loc 1 66 5 is_stmt 1 view .LVU80
+ 425 0050 0DF10701 		add	r1, sp, #7
+ 426 0054 FFF7FEFF 		bl	NRF24L01_Write_Register
+ 427              	.LVL40:
+  67:Core/Src/NRF24L01.c **** 
+  68:Core/Src/NRF24L01.c ****     data = 0x01; // Enable dynamic payload length for pipe 0
+ 428              		.loc 1 68 5 view .LVU81
+ 429              		.loc 1 68 10 is_stmt 0 view .LVU82
+ 430 0058 8DF80740 		strb	r4, [sp, #7]
+  69:Core/Src/NRF24L01.c ****     NRF24L01_Write_Register(NRF24L01_REG_DYNPD, &data);
+ 431              		.loc 1 69 5 is_stmt 1 view .LVU83
+ 432 005c 0DF10701 		add	r1, sp, #7
+ 433 0060 1C20     		movs	r0, #28
+ 434 0062 FFF7FEFF 		bl	NRF24L01_Write_Register
+ 435              	.LVL41:
+  70:Core/Src/NRF24L01.c **** 
+  71:Core/Src/NRF24L01.c ****     data = 0x04; // Enable dynamic payload length
+ 436              		.loc 1 71 5 view .LVU84
+ 437              		.loc 1 71 10 is_stmt 0 view .LVU85
+ 438 0066 0423     		movs	r3, #4
+ 439 0068 8DF80730 		strb	r3, [sp, #7]
+  72:Core/Src/NRF24L01.c ****     NRF24L01_Write_Register(NRF24L01_REG_FEATURE, &data);
+ 440              		.loc 1 72 5 is_stmt 1 view .LVU86
+ARM GAS  C:\Users\user-pc\AppData\Local\Temp\ccx6CTGz.s 			page 10
+
+
+ 441 006c 0DF10701 		add	r1, sp, #7
+ 442 0070 1D20     		movs	r0, #29
+ 443 0072 FFF7FEFF 		bl	NRF24L01_Write_Register
+ 444              	.LVL42:
+  73:Core/Src/NRF24L01.c **** }
+ 445              		.loc 1 73 1 is_stmt 0 view .LVU87
+ 446 0076 02B0     		add	sp, sp, #8
+ 447              	.LCFI14:
+ 448              		.cfi_def_cfa_offset 8
+ 449              		@ sp needed
+ 450 0078 10BD     		pop	{r4, pc}
+ 451              		.cfi_endproc
+ 452              	.LFE220:
+ 454              		.section	.text.NRF24L01_Initialise_Rx,"ax",%progbits
+ 455              		.align	1
+ 456              		.global	NRF24L01_Initialise_Rx
+ 457              		.syntax unified
+ 458              		.thumb
+ 459              		.thumb_func
+ 460              		.fpu fpv4-sp-d16
+ 462              	NRF24L01_Initialise_Rx:
+ 463              	.LFB221:
+  74:Core/Src/NRF24L01.c **** 
+  75:Core/Src/NRF24L01.c **** void NRF24L01_Initialise_Rx()
+  76:Core/Src/NRF24L01.c **** {
+ 464              		.loc 1 76 1 is_stmt 1 view -0
+ 465              		.cfi_startproc
+ 466              		@ args = 0, pretend = 0, frame = 8
+ 467              		@ frame_needed = 0, uses_anonymous_args = 0
+ 468 0000 10B5     		push	{r4, lr}
+ 469              	.LCFI15:
+ 470              		.cfi_def_cfa_offset 8
+ 471              		.cfi_offset 4, -8
+ 472              		.cfi_offset 14, -4
+ 473 0002 82B0     		sub	sp, sp, #8
+ 474              	.LCFI16:
+ 475              		.cfi_def_cfa_offset 16
+  77:Core/Src/NRF24L01.c ****     uint8_t data;
+ 476              		.loc 1 77 5 view .LVU89
+  78:Core/Src/NRF24L01.c **** 
+  79:Core/Src/NRF24L01.c ****     // The first register must be written twice because of SPI quirk
+  80:Core/Src/NRF24L01.c ****     data = 0x0B; // Power up, RX mode, 1 byte CRC
+ 477              		.loc 1 80 5 view .LVU90
+ 478              		.loc 1 80 10 is_stmt 0 view .LVU91
+ 479 0004 0B23     		movs	r3, #11
+ 480 0006 8DF80730 		strb	r3, [sp, #7]
+  81:Core/Src/NRF24L01.c ****     NRF24L01_Write_Register(NRF24L01_REG_CONFIG, &data);
+ 481              		.loc 1 81 5 is_stmt 1 view .LVU92
+ 482 000a 0DF10701 		add	r1, sp, #7
+ 483 000e 0020     		movs	r0, #0
+ 484 0010 FFF7FEFF 		bl	NRF24L01_Write_Register
+ 485              	.LVL43:
+  82:Core/Src/NRF24L01.c ****     NRF24L01_Write_Register(NRF24L01_REG_CONFIG, &data);
+ 486              		.loc 1 82 5 view .LVU93
+ 487 0014 0DF10701 		add	r1, sp, #7
+ 488 0018 0020     		movs	r0, #0
+ 489 001a FFF7FEFF 		bl	NRF24L01_Write_Register
+ARM GAS  C:\Users\user-pc\AppData\Local\Temp\ccx6CTGz.s 			page 11
+
+
+ 490              	.LVL44:
+  83:Core/Src/NRF24L01.c **** 
+  84:Core/Src/NRF24L01.c ****     data = 0x01; // Enable auto-acknowledgement for pipe 0
+ 491              		.loc 1 84 5 view .LVU94
+ 492              		.loc 1 84 10 is_stmt 0 view .LVU95
+ 493 001e 0124     		movs	r4, #1
+ 494 0020 8DF80740 		strb	r4, [sp, #7]
+  85:Core/Src/NRF24L01.c ****     NRF24L01_Write_Register(NRF24L01_REG_EN_AA, &data);
+ 495              		.loc 1 85 5 is_stmt 1 view .LVU96
+ 496 0024 0DF10701 		add	r1, sp, #7
+ 497 0028 2046     		mov	r0, r4
+ 498 002a FFF7FEFF 		bl	NRF24L01_Write_Register
+ 499              	.LVL45:
+  86:Core/Src/NRF24L01.c **** 
+  87:Core/Src/NRF24L01.c ****     data = 0x01; // Enable pipe 0
+ 500              		.loc 1 87 5 view .LVU97
+ 501              		.loc 1 87 10 is_stmt 0 view .LVU98
+ 502 002e 8DF80740 		strb	r4, [sp, #7]
+  88:Core/Src/NRF24L01.c ****     NRF24L01_Write_Register(NRF24L01_REG_EN_RXADDR, &data);
+ 503              		.loc 1 88 5 is_stmt 1 view .LVU99
+ 504 0032 0DF10701 		add	r1, sp, #7
+ 505 0036 0220     		movs	r0, #2
+ 506 0038 FFF7FEFF 		bl	NRF24L01_Write_Register
+ 507              	.LVL46:
+  89:Core/Src/NRF24L01.c **** 
+  90:Core/Src/NRF24L01.c ****     data = 0x06; // 1Mbps data rate, 0dBm output power
+ 508              		.loc 1 90 5 view .LVU100
+ 509              		.loc 1 90 10 is_stmt 0 view .LVU101
+ 510 003c 0620     		movs	r0, #6
+ 511 003e 8DF80700 		strb	r0, [sp, #7]
+  91:Core/Src/NRF24L01.c ****     NRF24L01_Write_Register(NRF24L01_REG_RF_SETUP, &data);
+ 512              		.loc 1 91 5 is_stmt 1 view .LVU102
+ 513 0042 0DF10701 		add	r1, sp, #7
+ 514 0046 FFF7FEFF 		bl	NRF24L01_Write_Register
+ 515              	.LVL47:
+  92:Core/Src/NRF24L01.c **** 
+  93:Core/Src/NRF24L01.c ****     data = 0x01; // Enable dynamic payload length for pipe 0
+ 516              		.loc 1 93 5 view .LVU103
+ 517              		.loc 1 93 10 is_stmt 0 view .LVU104
+ 518 004a 8DF80740 		strb	r4, [sp, #7]
+  94:Core/Src/NRF24L01.c ****     NRF24L01_Write_Register(NRF24L01_REG_DYNPD, &data);
+ 519              		.loc 1 94 5 is_stmt 1 view .LVU105
+ 520 004e 0DF10701 		add	r1, sp, #7
+ 521 0052 1C20     		movs	r0, #28
+ 522 0054 FFF7FEFF 		bl	NRF24L01_Write_Register
+ 523              	.LVL48:
+  95:Core/Src/NRF24L01.c **** 
+  96:Core/Src/NRF24L01.c ****     data = 0x04; // Enable dynamic payload length
+ 524              		.loc 1 96 5 view .LVU106
+ 525              		.loc 1 96 10 is_stmt 0 view .LVU107
+ 526 0058 0423     		movs	r3, #4
+ 527 005a 8DF80730 		strb	r3, [sp, #7]
+  97:Core/Src/NRF24L01.c ****     NRF24L01_Write_Register(NRF24L01_REG_FEATURE, &data);
+ 528              		.loc 1 97 5 is_stmt 1 view .LVU108
+ 529 005e 0DF10701 		add	r1, sp, #7
+ 530 0062 1D20     		movs	r0, #29
+ 531 0064 FFF7FEFF 		bl	NRF24L01_Write_Register
+ARM GAS  C:\Users\user-pc\AppData\Local\Temp\ccx6CTGz.s 			page 12
+
+
+ 532              	.LVL49:
+  98:Core/Src/NRF24L01.c **** 
+  99:Core/Src/NRF24L01.c ****     HAL_Delay(1);
+ 533              		.loc 1 99 5 view .LVU109
+ 534 0068 2046     		mov	r0, r4
+ 535 006a FFF7FEFF 		bl	HAL_Delay
+ 536              	.LVL50:
+ 100:Core/Src/NRF24L01.c **** 
+ 101:Core/Src/NRF24L01.c ****     HAL_GPIO_WritePin(GPIOB, GPIO_PIN_9, GPIO_PIN_SET); // CE pin high to start receiving
+ 537              		.loc 1 101 5 view .LVU110
+ 538 006e 2246     		mov	r2, r4
+ 539 0070 4FF40071 		mov	r1, #512
+ 540 0074 0248     		ldr	r0, .L25
+ 541 0076 FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 542              	.LVL51:
+ 102:Core/Src/NRF24L01.c **** }
+ 543              		.loc 1 102 1 is_stmt 0 view .LVU111
+ 544 007a 02B0     		add	sp, sp, #8
+ 545              	.LCFI17:
+ 546              		.cfi_def_cfa_offset 8
+ 547              		@ sp needed
+ 548 007c 10BD     		pop	{r4, pc}
+ 549              	.L26:
+ 550 007e 00BF     		.align	2
+ 551              	.L25:
+ 552 0080 00040240 		.word	1073873920
+ 553              		.cfi_endproc
+ 554              	.LFE221:
+ 556              		.section	.text.NRF24L01_Transmit,"ax",%progbits
+ 557              		.align	1
+ 558              		.global	NRF24L01_Transmit
+ 559              		.syntax unified
+ 560              		.thumb
+ 561              		.thumb_func
+ 562              		.fpu fpv4-sp-d16
+ 564              	NRF24L01_Transmit:
+ 565              	.LVL52:
+ 566              	.LFB222:
+ 103:Core/Src/NRF24L01.c **** 
+ 104:Core/Src/NRF24L01.c **** void NRF24L01_Transmit(uint8_t *data, uint8_t length)
+ 105:Core/Src/NRF24L01.c **** {
+ 567              		.loc 1 105 1 is_stmt 1 view -0
+ 568              		.cfi_startproc
+ 569              		@ args = 0, pretend = 0, frame = 8
+ 570              		@ frame_needed = 0, uses_anonymous_args = 0
+ 571              		.loc 1 105 1 is_stmt 0 view .LVU113
+ 572 0000 10B5     		push	{r4, lr}
+ 573              	.LCFI18:
+ 574              		.cfi_def_cfa_offset 8
+ 575              		.cfi_offset 4, -8
+ 576              		.cfi_offset 14, -4
+ 577 0002 82B0     		sub	sp, sp, #8
+ 578              	.LCFI19:
+ 579              		.cfi_def_cfa_offset 16
+ 106:Core/Src/NRF24L01.c ****     uint8_t tx_data, rx_data;
+ 580              		.loc 1 106 5 is_stmt 1 view .LVU114
+ 107:Core/Src/NRF24L01.c **** 
+ARM GAS  C:\Users\user-pc\AppData\Local\Temp\ccx6CTGz.s 			page 13
+
+
+ 108:Core/Src/NRF24L01.c ****     NRF24L01_Write_Payload(data, length); // Write data into TX FIFO
+ 581              		.loc 1 108 5 view .LVU115
+ 582 0004 FFF7FEFF 		bl	NRF24L01_Write_Payload
+ 583              	.LVL53:
+ 109:Core/Src/NRF24L01.c **** 
+ 110:Core/Src/NRF24L01.c ****     HAL_GPIO_WritePin(GPIOB, GPIO_PIN_9, GPIO_PIN_SET); // CE pin high to start transmitting
+ 584              		.loc 1 110 5 view .LVU116
+ 585 0008 124C     		ldr	r4, .L31
+ 586 000a 0122     		movs	r2, #1
+ 587 000c 4FF40071 		mov	r1, #512
+ 588 0010 2046     		mov	r0, r4
+ 589 0012 FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 590              	.LVL54:
+ 111:Core/Src/NRF24L01.c ****     HAL_Delay(1);
+ 591              		.loc 1 111 5 view .LVU117
+ 592 0016 0120     		movs	r0, #1
+ 593 0018 FFF7FEFF 		bl	HAL_Delay
+ 594              	.LVL55:
+ 112:Core/Src/NRF24L01.c ****     HAL_GPIO_WritePin(GPIOB, GPIO_PIN_9, GPIO_PIN_RESET); // CE pin low to stop transmitting
+ 595              		.loc 1 112 5 view .LVU118
+ 596 001c 0022     		movs	r2, #0
+ 597 001e 4FF40071 		mov	r1, #512
+ 598 0022 2046     		mov	r0, r4
+ 599 0024 FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 600              	.LVL56:
+ 113:Core/Src/NRF24L01.c **** 
+ 114:Core/Src/NRF24L01.c ****     NRF24L01_Read_Register(NRF24L01_REG_STATUS, &rx_data); // Read the STATUS register
+ 601              		.loc 1 114 5 view .LVU119
+ 602 0028 0DF10601 		add	r1, sp, #6
+ 603 002c 0720     		movs	r0, #7
+ 604 002e FFF7FEFF 		bl	NRF24L01_Read_Register
+ 605              	.LVL57:
+ 115:Core/Src/NRF24L01.c **** 
+ 116:Core/Src/NRF24L01.c ****     if (rx_data & 0b00010000) // If MAX_RT bit in STATUS register is asserted...
+ 606              		.loc 1 116 5 view .LVU120
+ 607              		.loc 1 116 17 is_stmt 0 view .LVU121
+ 608 0032 9DF80630 		ldrb	r3, [sp, #6]	@ zero_extendqisi2
+ 609              		.loc 1 116 8 view .LVU122
+ 610 0036 13F0100F 		tst	r3, #16
+ 611 003a 01D1     		bne	.L30
+ 612              	.L27:
+ 117:Core/Src/NRF24L01.c ****     {
+ 118:Core/Src/NRF24L01.c ****         tx_data = 0x10;
+ 119:Core/Src/NRF24L01.c ****         NRF24L01_Write_Register(NRF24L01_REG_STATUS, &tx_data); // ...clear MAX_RT bit
+ 120:Core/Src/NRF24L01.c ****     }
+ 121:Core/Src/NRF24L01.c **** }
+ 613              		.loc 1 121 1 view .LVU123
+ 614 003c 02B0     		add	sp, sp, #8
+ 615              	.LCFI20:
+ 616              		.cfi_remember_state
+ 617              		.cfi_def_cfa_offset 8
+ 618              		@ sp needed
+ 619 003e 10BD     		pop	{r4, pc}
+ 620              	.L30:
+ 621              	.LCFI21:
+ 622              		.cfi_restore_state
+ 118:Core/Src/NRF24L01.c ****         NRF24L01_Write_Register(NRF24L01_REG_STATUS, &tx_data); // ...clear MAX_RT bit
+ARM GAS  C:\Users\user-pc\AppData\Local\Temp\ccx6CTGz.s 			page 14
+
+
+ 623              		.loc 1 118 9 is_stmt 1 view .LVU124
+ 118:Core/Src/NRF24L01.c ****         NRF24L01_Write_Register(NRF24L01_REG_STATUS, &tx_data); // ...clear MAX_RT bit
+ 624              		.loc 1 118 17 is_stmt 0 view .LVU125
+ 625 0040 1023     		movs	r3, #16
+ 626 0042 8DF80730 		strb	r3, [sp, #7]
+ 119:Core/Src/NRF24L01.c ****     }
+ 627              		.loc 1 119 9 is_stmt 1 view .LVU126
+ 628 0046 0DF10701 		add	r1, sp, #7
+ 629 004a 0720     		movs	r0, #7
+ 630 004c FFF7FEFF 		bl	NRF24L01_Write_Register
+ 631              	.LVL58:
+ 632              		.loc 1 121 1 is_stmt 0 view .LVU127
+ 633 0050 F4E7     		b	.L27
+ 634              	.L32:
+ 635 0052 00BF     		.align	2
+ 636              	.L31:
+ 637 0054 00040240 		.word	1073873920
+ 638              		.cfi_endproc
+ 639              	.LFE222:
+ 641              		.section	.text.NRF24L01_Receive,"ax",%progbits
+ 642              		.align	1
+ 643              		.global	NRF24L01_Receive
+ 644              		.syntax unified
+ 645              		.thumb
+ 646              		.thumb_func
+ 647              		.fpu fpv4-sp-d16
+ 649              	NRF24L01_Receive:
+ 650              	.LVL59:
+ 651              	.LFB223:
+ 122:Core/Src/NRF24L01.c **** 
+ 123:Core/Src/NRF24L01.c **** void NRF24L01_Receive(uint8_t *data, uint8_t length)
+ 124:Core/Src/NRF24L01.c **** {
+ 652              		.loc 1 124 1 is_stmt 1 view -0
+ 653              		.cfi_startproc
+ 654              		@ args = 0, pretend = 0, frame = 0
+ 655              		@ frame_needed = 0, uses_anonymous_args = 0
+ 656              		.loc 1 124 1 is_stmt 0 view .LVU129
+ 657 0000 08B5     		push	{r3, lr}
+ 658              	.LCFI22:
+ 659              		.cfi_def_cfa_offset 8
+ 660              		.cfi_offset 3, -8
+ 661              		.cfi_offset 14, -4
+ 125:Core/Src/NRF24L01.c ****     NRF24L01_Read_Payload(data, length); // Read data from RX FIFO
+ 662              		.loc 1 125 5 is_stmt 1 view .LVU130
+ 663 0002 FFF7FEFF 		bl	NRF24L01_Read_Payload
+ 664              	.LVL60:
+ 126:Core/Src/NRF24L01.c **** }
+ 665              		.loc 1 126 1 is_stmt 0 view .LVU131
+ 666 0006 08BD     		pop	{r3, pc}
+ 667              		.cfi_endproc
+ 668              	.LFE223:
+ 670              		.text
+ 671              	.Letext0:
+ 672              		.file 2 "c:\\program files (x86)\\gnu arm embedded toolchain\\10 2020-q4-major\\arm-none-eabi\\inc
+ 673              		.file 3 "c:\\program files (x86)\\gnu arm embedded toolchain\\10 2020-q4-major\\arm-none-eabi\\inc
+ 674              		.file 4 "Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f411xe.h"
+ 675              		.file 5 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_def.h"
+ARM GAS  C:\Users\user-pc\AppData\Local\Temp\ccx6CTGz.s 			page 15
+
+
+ 676              		.file 6 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_gpio.h"
+ 677              		.file 7 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_dma.h"
+ 678              		.file 8 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_spi.h"
+ 679              		.file 9 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h"
+ 680              		.file 10 "Core/Inc/spi.h"
+ARM GAS  C:\Users\user-pc\AppData\Local\Temp\ccx6CTGz.s 			page 16
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 NRF24L01.c
+C:\Users\user-pc\AppData\Local\Temp\ccx6CTGz.s:18     .text.NRF24L01_Read_Register:00000000 $t
+C:\Users\user-pc\AppData\Local\Temp\ccx6CTGz.s:26     .text.NRF24L01_Read_Register:00000000 NRF24L01_Read_Register
+C:\Users\user-pc\AppData\Local\Temp\ccx6CTGz.s:83     .text.NRF24L01_Read_Register:0000003c $d
+C:\Users\user-pc\AppData\Local\Temp\ccx6CTGz.s:89     .text.NRF24L01_Write_Register:00000000 $t
+C:\Users\user-pc\AppData\Local\Temp\ccx6CTGz.s:96     .text.NRF24L01_Write_Register:00000000 NRF24L01_Write_Register
+C:\Users\user-pc\AppData\Local\Temp\ccx6CTGz.s:153    .text.NRF24L01_Write_Register:00000040 $d
+C:\Users\user-pc\AppData\Local\Temp\ccx6CTGz.s:159    .text.NRF24L01_Read_Payload:00000000 $t
+C:\Users\user-pc\AppData\Local\Temp\ccx6CTGz.s:166    .text.NRF24L01_Read_Payload:00000000 NRF24L01_Read_Payload
+C:\Users\user-pc\AppData\Local\Temp\ccx6CTGz.s:253    .text.NRF24L01_Read_Payload:00000054 $d
+C:\Users\user-pc\AppData\Local\Temp\ccx6CTGz.s:259    .text.NRF24L01_Write_Payload:00000000 $t
+C:\Users\user-pc\AppData\Local\Temp\ccx6CTGz.s:266    .text.NRF24L01_Write_Payload:00000000 NRF24L01_Write_Payload
+C:\Users\user-pc\AppData\Local\Temp\ccx6CTGz.s:353    .text.NRF24L01_Write_Payload:00000054 $d
+C:\Users\user-pc\AppData\Local\Temp\ccx6CTGz.s:359    .text.NRF24L01_Initialise_Tx:00000000 $t
+C:\Users\user-pc\AppData\Local\Temp\ccx6CTGz.s:366    .text.NRF24L01_Initialise_Tx:00000000 NRF24L01_Initialise_Tx
+C:\Users\user-pc\AppData\Local\Temp\ccx6CTGz.s:455    .text.NRF24L01_Initialise_Rx:00000000 $t
+C:\Users\user-pc\AppData\Local\Temp\ccx6CTGz.s:462    .text.NRF24L01_Initialise_Rx:00000000 NRF24L01_Initialise_Rx
+C:\Users\user-pc\AppData\Local\Temp\ccx6CTGz.s:552    .text.NRF24L01_Initialise_Rx:00000080 $d
+C:\Users\user-pc\AppData\Local\Temp\ccx6CTGz.s:557    .text.NRF24L01_Transmit:00000000 $t
+C:\Users\user-pc\AppData\Local\Temp\ccx6CTGz.s:564    .text.NRF24L01_Transmit:00000000 NRF24L01_Transmit
+C:\Users\user-pc\AppData\Local\Temp\ccx6CTGz.s:637    .text.NRF24L01_Transmit:00000054 $d
+C:\Users\user-pc\AppData\Local\Temp\ccx6CTGz.s:642    .text.NRF24L01_Receive:00000000 $t
+C:\Users\user-pc\AppData\Local\Temp\ccx6CTGz.s:649    .text.NRF24L01_Receive:00000000 NRF24L01_Receive
+
+UNDEFINED SYMBOLS
+HAL_GPIO_WritePin
+HAL_SPI_TransmitReceive
+hspi3
+HAL_SPI_Transmit
+HAL_SPI_Receive
+HAL_Delay

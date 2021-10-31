@@ -1,0 +1,28 @@
+{
+    "configurations": [
+        {
+            "name": "STM32",
+            "includePath": [
+                "${workspaceFolder}/**"
+            ],
+            "defines": [
+                "_DEBUG",
+                "UNICODE",
+                "_UNICODE",
+                "USE_HAL_DRIVER",
+                "STM32F411xE"
+            ],
+            "intelliSenseMode": "gcc-arm",
+            "compilerPath": "C:/Program Files (x86)/GNU Arm Embedded Toolchain/10 2020-q4-major/bin/arm-none-eabi-g++",
+            "compilerArgs": [
+                "-mcpu=cortex-m4",
+                "-mfpu=fpv4-sp-d16",
+                "-mfloat-abi=hard",
+                "-mthumb"
+            ],
+            "cStandard": "c11",
+            "cppStandard": "c++17"
+        }
+    ],
+    "version": 4
+}
