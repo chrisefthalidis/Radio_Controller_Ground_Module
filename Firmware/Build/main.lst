@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\user-pc\AppData\Local\Temp\cciNii3z.s 			page 1
+ARM GAS  C:\Users\user-pc\AppData\Local\Temp\cc01t98R.s 			page 1
 
 
    1              		.cpu cortex-m4
@@ -30,42 +30,42 @@ ARM GAS  C:\Users\user-pc\AppData\Local\Temp\cciNii3z.s 			page 1
   28              		.file 1 "Core/Src/main.c"
    1:Core/Src/main.c **** #include "main.h"
    2:Core/Src/main.c **** #include "adc.h"
-   3:Core/Src/main.c **** #include "spi.h"
-   4:Core/Src/main.c **** #include "usb_device.h"
-   5:Core/Src/main.c **** #include "usbd_cdc_if.h"
-   6:Core/Src/main.c **** #include "gpio.h"
-   7:Core/Src/main.c **** #include "NRF24L01.h"
-   8:Core/Src/main.c **** 
-   9:Core/Src/main.c **** void SystemClock_Config(void);
-  10:Core/Src/main.c **** 
-  11:Core/Src/main.c **** int main(void)
-  12:Core/Src/main.c **** {
-  13:Core/Src/main.c ****   HAL_Init();
-  14:Core/Src/main.c ****   SystemClock_Config();
-  15:Core/Src/main.c ****   MX_GPIO_Init();
-  16:Core/Src/main.c ****   MX_SPI3_Init();
-  17:Core/Src/main.c ****   MX_USB_DEVICE_Init();
-  18:Core/Src/main.c ****   MX_ADC1_Init();
-  19:Core/Src/main.c ****   HAL_Delay(500);
-  20:Core/Src/main.c **** 
-  21:Core/Src/main.c ****   // Initialise radio as a transmitter
-  22:Core/Src/main.c ****   NRF24L01_Initialise_Tx();
-  23:Core/Src/main.c ****   HAL_Delay(500);
-  24:Core/Src/main.c **** 
-  25:Core/Src/main.c ****   uint16_t pot_value = 0;
+   3:Core/Src/main.c **** #include "dma.h"
+   4:Core/Src/main.c **** #include "spi.h"
+   5:Core/Src/main.c **** #include "usb_device.h"
+   6:Core/Src/main.c **** #include "usbd_cdc_if.h"
+   7:Core/Src/main.c **** #include "gpio.h"
+   8:Core/Src/main.c **** #include "NRF24L01.h"
+   9:Core/Src/main.c **** 
+  10:Core/Src/main.c **** void SystemClock_Config(void);
+  11:Core/Src/main.c **** 
+  12:Core/Src/main.c **** int main(void)
+  13:Core/Src/main.c **** {
+  14:Core/Src/main.c ****   HAL_Init();
+  15:Core/Src/main.c ****   SystemClock_Config();
+  16:Core/Src/main.c ****   MX_GPIO_Init();
+  17:Core/Src/main.c ****   MX_DMA_Init();
+  18:Core/Src/main.c ****   MX_SPI3_Init();
+  19:Core/Src/main.c ****   MX_USB_DEVICE_Init();
+  20:Core/Src/main.c ****   MX_ADC1_Init();
+  21:Core/Src/main.c ****   HAL_Delay(500);
+  22:Core/Src/main.c **** 
+  23:Core/Src/main.c ****   // Initialise radio as a transmitter
+  24:Core/Src/main.c ****   NRF24L01_Initialise_Tx();
+  25:Core/Src/main.c ****   HAL_Delay(500);
   26:Core/Src/main.c **** 
-  27:Core/Src/main.c ****   while (1)
-  28:Core/Src/main.c ****   {
-  29:Core/Src/main.c ****     // Read the potentiometer value from ADC
-  30:Core/Src/main.c ****     HAL_ADC_Start(&hadc1);
-ARM GAS  C:\Users\user-pc\AppData\Local\Temp\cciNii3z.s 			page 2
+  27:Core/Src/main.c ****   uint32_t pot_value = 0;
+  28:Core/Src/main.c **** 
+  29:Core/Src/main.c ****   while (1)
+  30:Core/Src/main.c ****   {
+ARM GAS  C:\Users\user-pc\AppData\Local\Temp\cc01t98R.s 			page 2
 
 
-  31:Core/Src/main.c ****     HAL_ADC_PollForConversion(&hadc1, 1);
-  32:Core/Src/main.c ****     pot_value = HAL_ADC_GetValue(&hadc1);
+  31:Core/Src/main.c ****     // Read the potentiometer value from the ADC via DMA
+  32:Core/Src/main.c ****     HAL_ADC_Start_DMA(&hadc1, &pot_value, 1);
   33:Core/Src/main.c **** 
-  34:Core/Src/main.c ****     // Send the potentiometer value via radio
-  35:Core/Src/main.c ****     NRF24L01_Transmit((uint8_t *)&pot_value, sizeof(pot_value));
+  34:Core/Src/main.c ****     // Transmit the potentiometer value via radio
+  35:Core/Src/main.c ****     NRF24L01_Transmit((uint8_t *)&pot_value, 2);
   36:Core/Src/main.c **** 
   37:Core/Src/main.c ****     HAL_Delay(10);
   38:Core/Src/main.c ****   }
@@ -118,7 +118,7 @@ ARM GAS  C:\Users\user-pc\AppData\Local\Temp\cciNii3z.s 			page 1
   85:Core/Src/main.c ****  * @retval None
   86:Core/Src/main.c ****  */
   87:Core/Src/main.c **** void Error_Handler(void)
-ARM GAS  C:\Users\user-pc\AppData\Local\Temp\cciNii3z.s 			page 3
+ARM GAS  C:\Users\user-pc\AppData\Local\Temp\cc01t98R.s 			page 3
 
 
   88:Core/Src/main.c **** {
@@ -178,7 +178,7 @@ ARM GAS  C:\Users\user-pc\AppData\Local\Temp\cciNii3z.s 			page 1
   41:Drivers/CMSIS/Include/cmsis_gcc.h ****   #define __ASM                                  __asm
   42:Drivers/CMSIS/Include/cmsis_gcc.h **** #endif
   43:Drivers/CMSIS/Include/cmsis_gcc.h **** #ifndef   __INLINE
-ARM GAS  C:\Users\user-pc\AppData\Local\Temp\cciNii3z.s 			page 4
+ARM GAS  C:\Users\user-pc\AppData\Local\Temp\cc01t98R.s 			page 4
 
 
   44:Drivers/CMSIS/Include/cmsis_gcc.h ****   #define __INLINE                               inline
@@ -238,7 +238,7 @@ ARM GAS  C:\Users\user-pc\AppData\Local\Temp\cciNii3z.s 			page 1
   98:Drivers/CMSIS/Include/cmsis_gcc.h ****   __PACKED_STRUCT T_UINT32_WRITE { uint32_t v; };
   99:Drivers/CMSIS/Include/cmsis_gcc.h ****   #pragma GCC diagnostic pop
  100:Drivers/CMSIS/Include/cmsis_gcc.h ****   #define __UNALIGNED_UINT32_WRITE(addr, val)    (void)((((struct T_UINT32_WRITE *)(void *)(addr))-
-ARM GAS  C:\Users\user-pc\AppData\Local\Temp\cciNii3z.s 			page 5
+ARM GAS  C:\Users\user-pc\AppData\Local\Temp\cc01t98R.s 			page 5
 
 
  101:Drivers/CMSIS/Include/cmsis_gcc.h **** #endif
@@ -298,7 +298,7 @@ ARM GAS  C:\Users\user-pc\AppData\Local\Temp\cciNii3z.s 			page 1
   92:Core/Src/main.c ****   while (1)
   51              		.loc 1 92 3 discriminator 1 view .LVU4
   93:Core/Src/main.c ****   {
-ARM GAS  C:\Users\user-pc\AppData\Local\Temp\cciNii3z.s 			page 6
+ARM GAS  C:\Users\user-pc\AppData\Local\Temp\cc01t98R.s 			page 6
 
 
   94:Core/Src/main.c ****   }
@@ -358,7 +358,7 @@ ARM GAS  C:\Users\user-pc\AppData\Local\Temp\cciNii3z.s 			page 1
   98              		.loc 1 52 3 view .LVU14
   99 001c 204A     		ldr	r2, .L9
  100 001e 116C     		ldr	r1, [r2, #64]
-ARM GAS  C:\Users\user-pc\AppData\Local\Temp\cciNii3z.s 			page 7
+ARM GAS  C:\Users\user-pc\AppData\Local\Temp\cc01t98R.s 			page 7
 
 
  101 0020 41F08051 		orr	r1, r1, #268435456
@@ -418,7 +418,7 @@ ARM GAS  C:\Users\user-pc\AppData\Local\Temp\cciNii3z.s 			page 1
   60:Core/Src/main.c ****   RCC_OscInitStruct.PLL.PLLM = 14;
  140              		.loc 1 60 3 is_stmt 1 view .LVU30
   60:Core/Src/main.c ****   RCC_OscInitStruct.PLL.PLLM = 14;
-ARM GAS  C:\Users\user-pc\AppData\Local\Temp\cciNii3z.s 			page 8
+ARM GAS  C:\Users\user-pc\AppData\Local\Temp\cc01t98R.s 			page 8
 
 
  141              		.loc 1 60 35 is_stmt 0 view .LVU31
@@ -478,7 +478,7 @@ ARM GAS  C:\Users\user-pc\AppData\Local\Temp\cciNii3z.s 			page 1
  178 007e 0593     		str	r3, [sp, #20]
   74:Core/Src/main.c ****   RCC_ClkInitStruct.APB2CLKDivider = RCC_HCLK_DIV1;
  179              		.loc 1 74 3 is_stmt 1 view .LVU49
-ARM GAS  C:\Users\user-pc\AppData\Local\Temp\cciNii3z.s 			page 9
+ARM GAS  C:\Users\user-pc\AppData\Local\Temp\cc01t98R.s 			page 9
 
 
   74:Core/Src/main.c ****   RCC_ClkInitStruct.APB2CLKDivider = RCC_HCLK_DIV1;
@@ -537,11 +537,11 @@ ARM GAS  C:\Users\user-pc\AppData\Local\Temp\cciNii3z.s 			page 1
  225              		.fpu fpv4-sp-d16
  227              	main:
  228              	.LFB220:
-  12:Core/Src/main.c ****   HAL_Init();
-ARM GAS  C:\Users\user-pc\AppData\Local\Temp\cciNii3z.s 			page 10
+  13:Core/Src/main.c ****   HAL_Init();
+ARM GAS  C:\Users\user-pc\AppData\Local\Temp\cc01t98R.s 			page 10
 
 
- 229              		.loc 1 12 1 view -0
+ 229              		.loc 1 13 1 view -0
  230              		.cfi_startproc
  231              		@ Volatile: function does not return.
  232              		@ args = 0, pretend = 0, frame = 8
@@ -553,132 +553,119 @@ ARM GAS  C:\Users\user-pc\AppData\Local\Temp\cciNii3z.s 			page 1
  238 0002 83B0     		sub	sp, sp, #12
  239              	.LCFI5:
  240              		.cfi_def_cfa_offset 16
-  13:Core/Src/main.c ****   SystemClock_Config();
- 241              		.loc 1 13 3 view .LVU60
+  14:Core/Src/main.c ****   SystemClock_Config();
+ 241              		.loc 1 14 3 view .LVU60
  242 0004 FFF7FEFF 		bl	HAL_Init
  243              	.LVL5:
-  14:Core/Src/main.c ****   MX_GPIO_Init();
- 244              		.loc 1 14 3 view .LVU61
+  15:Core/Src/main.c ****   MX_GPIO_Init();
+ 244              		.loc 1 15 3 view .LVU61
  245 0008 FFF7FEFF 		bl	SystemClock_Config
  246              	.LVL6:
-  15:Core/Src/main.c ****   MX_SPI3_Init();
- 247              		.loc 1 15 3 view .LVU62
+  16:Core/Src/main.c ****   MX_DMA_Init();
+ 247              		.loc 1 16 3 view .LVU62
  248 000c FFF7FEFF 		bl	MX_GPIO_Init
  249              	.LVL7:
-  16:Core/Src/main.c ****   MX_USB_DEVICE_Init();
- 250              		.loc 1 16 3 view .LVU63
- 251 0010 FFF7FEFF 		bl	MX_SPI3_Init
+  17:Core/Src/main.c ****   MX_SPI3_Init();
+ 250              		.loc 1 17 3 view .LVU63
+ 251 0010 FFF7FEFF 		bl	MX_DMA_Init
  252              	.LVL8:
-  17:Core/Src/main.c ****   MX_ADC1_Init();
- 253              		.loc 1 17 3 view .LVU64
- 254 0014 FFF7FEFF 		bl	MX_USB_DEVICE_Init
+  18:Core/Src/main.c ****   MX_USB_DEVICE_Init();
+ 253              		.loc 1 18 3 view .LVU64
+ 254 0014 FFF7FEFF 		bl	MX_SPI3_Init
  255              	.LVL9:
-  18:Core/Src/main.c ****   HAL_Delay(500);
- 256              		.loc 1 18 3 view .LVU65
- 257 0018 FFF7FEFF 		bl	MX_ADC1_Init
+  19:Core/Src/main.c ****   MX_ADC1_Init();
+ 256              		.loc 1 19 3 view .LVU65
+ 257 0018 FFF7FEFF 		bl	MX_USB_DEVICE_Init
  258              	.LVL10:
-  19:Core/Src/main.c **** 
- 259              		.loc 1 19 3 view .LVU66
- 260 001c 4FF4FA70 		mov	r0, #500
- 261 0020 FFF7FEFF 		bl	HAL_Delay
- 262              	.LVL11:
-  22:Core/Src/main.c ****   HAL_Delay(500);
- 263              		.loc 1 22 3 view .LVU67
- 264 0024 FFF7FEFF 		bl	NRF24L01_Initialise_Tx
+  20:Core/Src/main.c ****   HAL_Delay(500);
+ 259              		.loc 1 20 3 view .LVU66
+ 260 001c FFF7FEFF 		bl	MX_ADC1_Init
+ 261              	.LVL11:
+  21:Core/Src/main.c **** 
+ 262              		.loc 1 21 3 view .LVU67
+ 263 0020 4FF4FA70 		mov	r0, #500
+ 264 0024 FFF7FEFF 		bl	HAL_Delay
  265              	.LVL12:
-  23:Core/Src/main.c **** 
- 266              		.loc 1 23 3 view .LVU68
- 267 0028 4FF4FA70 		mov	r0, #500
- 268 002c FFF7FEFF 		bl	HAL_Delay
- 269              	.LVL13:
+  24:Core/Src/main.c ****   HAL_Delay(500);
+ 266              		.loc 1 24 3 view .LVU68
+ 267 0028 FFF7FEFF 		bl	NRF24L01_Initialise_Tx
+ 268              	.LVL13:
   25:Core/Src/main.c **** 
- 270              		.loc 1 25 3 view .LVU69
-  25:Core/Src/main.c **** 
- 271              		.loc 1 25 12 is_stmt 0 view .LVU70
- 272 0030 0023     		movs	r3, #0
- 273 0032 ADF80630 		strh	r3, [sp, #6]	@ movhi
- 274              	.L12:
-ARM GAS  C:\Users\user-pc\AppData\Local\Temp\cciNii3z.s 			page 11
+ 269              		.loc 1 25 3 view .LVU69
+ 270 002c 4FF4FA70 		mov	r0, #500
+ 271 0030 FFF7FEFF 		bl	HAL_Delay
+ 272              	.LVL14:
+  27:Core/Src/main.c **** 
+ 273              		.loc 1 27 3 view .LVU70
+  27:Core/Src/main.c **** 
+ARM GAS  C:\Users\user-pc\AppData\Local\Temp\cc01t98R.s 			page 11
 
 
-  27:Core/Src/main.c ****   {
- 275              		.loc 1 27 3 is_stmt 1 discriminator 1 view .LVU71
-  30:Core/Src/main.c ****     HAL_ADC_PollForConversion(&hadc1, 1);
- 276              		.loc 1 30 5 discriminator 1 view .LVU72
- 277 0036 0B4C     		ldr	r4, .L14
- 278 0038 2046     		mov	r0, r4
- 279 003a FFF7FEFF 		bl	HAL_ADC_Start
- 280              	.LVL14:
-  31:Core/Src/main.c ****     pot_value = HAL_ADC_GetValue(&hadc1);
- 281              		.loc 1 31 5 discriminator 1 view .LVU73
- 282 003e 0121     		movs	r1, #1
- 283 0040 2046     		mov	r0, r4
- 284 0042 FFF7FEFF 		bl	HAL_ADC_PollForConversion
- 285              	.LVL15:
+ 274              		.loc 1 27 12 is_stmt 0 view .LVU71
+ 275 0034 0023     		movs	r3, #0
+ 276 0036 0193     		str	r3, [sp, #4]
+ 277              	.L12:
+  29:Core/Src/main.c ****   {
+ 278              		.loc 1 29 3 is_stmt 1 discriminator 1 view .LVU72
   32:Core/Src/main.c **** 
- 286              		.loc 1 32 5 discriminator 1 view .LVU74
-  32:Core/Src/main.c **** 
- 287              		.loc 1 32 17 is_stmt 0 discriminator 1 view .LVU75
- 288 0046 2046     		mov	r0, r4
- 289 0048 FFF7FEFF 		bl	HAL_ADC_GetValue
- 290              	.LVL16:
-  32:Core/Src/main.c **** 
- 291              		.loc 1 32 15 discriminator 1 view .LVU76
- 292 004c ADF80600 		strh	r0, [sp, #6]	@ movhi
+ 279              		.loc 1 32 5 discriminator 1 view .LVU73
+ 280 0038 0122     		movs	r2, #1
+ 281 003a 01A9     		add	r1, sp, #4
+ 282 003c 0548     		ldr	r0, .L14
+ 283 003e FFF7FEFF 		bl	HAL_ADC_Start_DMA
+ 284              	.LVL15:
   35:Core/Src/main.c **** 
- 293              		.loc 1 35 5 is_stmt 1 discriminator 1 view .LVU77
- 294 0050 0221     		movs	r1, #2
- 295 0052 0DF10600 		add	r0, sp, #6
- 296 0056 FFF7FEFF 		bl	NRF24L01_Transmit
- 297              	.LVL17:
+ 285              		.loc 1 35 5 discriminator 1 view .LVU74
+ 286 0042 0221     		movs	r1, #2
+ 287 0044 01A8     		add	r0, sp, #4
+ 288 0046 FFF7FEFF 		bl	NRF24L01_Transmit
+ 289              	.LVL16:
   37:Core/Src/main.c ****   }
- 298              		.loc 1 37 5 discriminator 1 view .LVU78
- 299 005a 0A20     		movs	r0, #10
- 300 005c FFF7FEFF 		bl	HAL_Delay
- 301              	.LVL18:
-  27:Core/Src/main.c ****   {
- 302              		.loc 1 27 9 discriminator 1 view .LVU79
- 303 0060 E9E7     		b	.L12
- 304              	.L15:
- 305 0062 00BF     		.align	2
- 306              	.L14:
- 307 0064 00000000 		.word	hadc1
- 308              		.cfi_endproc
- 309              	.LFE220:
- 311              		.text
- 312              	.Letext0:
- 313              		.file 3 "c:\\program files (x86)\\gnu arm embedded toolchain\\10 2020-q4-major\\arm-none-eabi\\inc
- 314              		.file 4 "c:\\program files (x86)\\gnu arm embedded toolchain\\10 2020-q4-major\\arm-none-eabi\\inc
- 315              		.file 5 "Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f411xe.h"
- 316              		.file 6 "Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f4xx.h"
- 317              		.file 7 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_def.h"
- 318              		.file 8 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc_ex.h"
- 319              		.file 9 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h"
- 320              		.file 10 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_dma.h"
- 321              		.file 11 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_adc.h"
- 322              		.file 12 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h"
- 323              		.file 13 "Core/Inc/gpio.h"
-ARM GAS  C:\Users\user-pc\AppData\Local\Temp\cciNii3z.s 			page 12
-
-
- 324              		.file 14 "Core/Inc/spi.h"
- 325              		.file 15 "USB_DEVICE/App/usb_device.h"
- 326              		.file 16 "Core/Inc/adc.h"
- 327              		.file 17 "Core/Inc/NRF24L01.h"
- 328              		.file 18 "<built-in>"
-ARM GAS  C:\Users\user-pc\AppData\Local\Temp\cciNii3z.s 			page 13
+ 290              		.loc 1 37 5 discriminator 1 view .LVU75
+ 291 004a 0A20     		movs	r0, #10
+ 292 004c FFF7FEFF 		bl	HAL_Delay
+ 293              	.LVL17:
+  29:Core/Src/main.c ****   {
+ 294              		.loc 1 29 9 discriminator 1 view .LVU76
+ 295 0050 F2E7     		b	.L12
+ 296              	.L15:
+ 297 0052 00BF     		.align	2
+ 298              	.L14:
+ 299 0054 00000000 		.word	hadc1
+ 300              		.cfi_endproc
+ 301              	.LFE220:
+ 303              		.text
+ 304              	.Letext0:
+ 305              		.file 3 "c:\\program files (x86)\\gnu arm embedded toolchain\\10 2020-q4-major\\arm-none-eabi\\inc
+ 306              		.file 4 "c:\\program files (x86)\\gnu arm embedded toolchain\\10 2020-q4-major\\arm-none-eabi\\inc
+ 307              		.file 5 "Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f411xe.h"
+ 308              		.file 6 "Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f4xx.h"
+ 309              		.file 7 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_def.h"
+ 310              		.file 8 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc_ex.h"
+ 311              		.file 9 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h"
+ 312              		.file 10 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_dma.h"
+ 313              		.file 11 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_adc.h"
+ 314              		.file 12 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h"
+ 315              		.file 13 "Core/Inc/gpio.h"
+ 316              		.file 14 "Core/Inc/dma.h"
+ 317              		.file 15 "Core/Inc/spi.h"
+ 318              		.file 16 "USB_DEVICE/App/usb_device.h"
+ 319              		.file 17 "Core/Inc/adc.h"
+ 320              		.file 18 "Core/Inc/NRF24L01.h"
+ 321              		.file 19 "<built-in>"
+ARM GAS  C:\Users\user-pc\AppData\Local\Temp\cc01t98R.s 			page 12
 
 
 DEFINED SYMBOLS
                             *ABS*:00000000 main.c
-C:\Users\user-pc\AppData\Local\Temp\cciNii3z.s:18     .text.Error_Handler:00000000 $t
-C:\Users\user-pc\AppData\Local\Temp\cciNii3z.s:26     .text.Error_Handler:00000000 Error_Handler
-C:\Users\user-pc\AppData\Local\Temp\cciNii3z.s:59     .text.SystemClock_Config:00000000 $t
-C:\Users\user-pc\AppData\Local\Temp\cciNii3z.s:66     .text.SystemClock_Config:00000000 SystemClock_Config
-C:\Users\user-pc\AppData\Local\Temp\cciNii3z.s:214    .text.SystemClock_Config:000000a0 $d
-C:\Users\user-pc\AppData\Local\Temp\cciNii3z.s:220    .text.main:00000000 $t
-C:\Users\user-pc\AppData\Local\Temp\cciNii3z.s:227    .text.main:00000000 main
-C:\Users\user-pc\AppData\Local\Temp\cciNii3z.s:307    .text.main:00000064 $d
+C:\Users\user-pc\AppData\Local\Temp\cc01t98R.s:18     .text.Error_Handler:00000000 $t
+C:\Users\user-pc\AppData\Local\Temp\cc01t98R.s:26     .text.Error_Handler:00000000 Error_Handler
+C:\Users\user-pc\AppData\Local\Temp\cc01t98R.s:59     .text.SystemClock_Config:00000000 $t
+C:\Users\user-pc\AppData\Local\Temp\cc01t98R.s:66     .text.SystemClock_Config:00000000 SystemClock_Config
+C:\Users\user-pc\AppData\Local\Temp\cc01t98R.s:214    .text.SystemClock_Config:000000a0 $d
+C:\Users\user-pc\AppData\Local\Temp\cc01t98R.s:220    .text.main:00000000 $t
+C:\Users\user-pc\AppData\Local\Temp\cc01t98R.s:227    .text.main:00000000 main
+C:\Users\user-pc\AppData\Local\Temp\cc01t98R.s:299    .text.main:00000054 $d
 
 UNDEFINED SYMBOLS
 memset
@@ -686,13 +673,12 @@ HAL_RCC_OscConfig
 HAL_RCC_ClockConfig
 HAL_Init
 MX_GPIO_Init
+MX_DMA_Init
 MX_SPI3_Init
 MX_USB_DEVICE_Init
 MX_ADC1_Init
 HAL_Delay
 NRF24L01_Initialise_Tx
-HAL_ADC_Start
-HAL_ADC_PollForConversion
-HAL_ADC_GetValue
+HAL_ADC_Start_DMA
 NRF24L01_Transmit
 hadc1

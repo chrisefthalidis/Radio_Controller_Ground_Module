@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\user-pc\AppData\Local\Temp\ccx6CTGz.s 			page 1
+ARM GAS  C:\Users\user-pc\AppData\Local\Temp\ccP7vYqf.s 			page 1
 
 
    1              		.cpu cortex-m4
@@ -58,7 +58,7 @@ ARM GAS  C:\Users\user-pc\AppData\Local\Temp\ccx6CTGz.s 			page 1
   49 000e 4FF48071 		mov	r1, #256
   50              	.LVL1:
   51              		.loc 1 7 5 is_stmt 0 view .LVU3
-ARM GAS  C:\Users\user-pc\AppData\Local\Temp\ccx6CTGz.s 			page 2
+ARM GAS  C:\Users\user-pc\AppData\Local\Temp\ccP7vYqf.s 			page 2
 
 
   52 0012 2846     		mov	r0, r5
@@ -118,7 +118,7 @@ ARM GAS  C:\Users\user-pc\AppData\Local\Temp\ccx6CTGz.s 			page 1
  102              		@ frame_needed = 0, uses_anonymous_args = 0
  103              		.loc 1 13 1 is_stmt 0 view .LVU10
  104 0000 10B5     		push	{r4, lr}
-ARM GAS  C:\Users\user-pc\AppData\Local\Temp\ccx6CTGz.s 			page 3
+ARM GAS  C:\Users\user-pc\AppData\Local\Temp\ccP7vYqf.s 			page 3
 
 
  105              	.LCFI3:
@@ -178,7 +178,7 @@ ARM GAS  C:\Users\user-pc\AppData\Local\Temp\ccx6CTGz.s 			page 1
  153 0040 00040240 		.word	1073873920
  154 0044 00000000 		.word	hspi3
  155              		.cfi_endproc
-ARM GAS  C:\Users\user-pc\AppData\Local\Temp\ccx6CTGz.s 			page 4
+ARM GAS  C:\Users\user-pc\AppData\Local\Temp\ccP7vYqf.s 			page 4
 
 
  156              	.LFE217:
@@ -238,7 +238,7 @@ ARM GAS  C:\Users\user-pc\AppData\Local\Temp\ccx6CTGz.s 			page 1
  205 0026 FFF7FEFF 		bl	HAL_SPI_Transmit
  206              	.LVL17:
   27:Core/Src/NRF24L01.c **** 
-ARM GAS  C:\Users\user-pc\AppData\Local\Temp\ccx6CTGz.s 			page 5
+ARM GAS  C:\Users\user-pc\AppData\Local\Temp\ccP7vYqf.s 			page 5
 
 
   28:Core/Src/NRF24L01.c ****     for (uint8_t i = 0; i < length; i++)
@@ -298,7 +298,7 @@ ARM GAS  C:\Users\user-pc\AppData\Local\Temp\ccx6CTGz.s 			page 1
  251              		.align	2
  252              	.L13:
  253 0054 00040240 		.word	1073873920
-ARM GAS  C:\Users\user-pc\AppData\Local\Temp\ccx6CTGz.s 			page 6
+ARM GAS  C:\Users\user-pc\AppData\Local\Temp\ccP7vYqf.s 			page 6
 
 
  254 0058 00000000 		.word	hspi3
@@ -358,7 +358,7 @@ ARM GAS  C:\Users\user-pc\AppData\Local\Temp\ccx6CTGz.s 			page 1
  303 0020 0DF10701 		add	r1, sp, #7
  304 0024 0C48     		ldr	r0, .L19+4
  305 0026 FFF7FEFF 		bl	HAL_SPI_Transmit
-ARM GAS  C:\Users\user-pc\AppData\Local\Temp\ccx6CTGz.s 			page 7
+ARM GAS  C:\Users\user-pc\AppData\Local\Temp\ccP7vYqf.s 			page 7
 
 
  306              	.LVL28:
@@ -418,7 +418,7 @@ ARM GAS  C:\Users\user-pc\AppData\Local\Temp\ccx6CTGz.s 			page 1
  349              	.L20:
  350              		.loc 1 45 1 view .LVU62
  351              		.align	2
-ARM GAS  C:\Users\user-pc\AppData\Local\Temp\ccx6CTGz.s 			page 8
+ARM GAS  C:\Users\user-pc\AppData\Local\Temp\ccP7vYqf.s 			page 8
 
 
  352              	.L19:
@@ -478,7 +478,7 @@ ARM GAS  C:\Users\user-pc\AppData\Local\Temp\ccx6CTGz.s 			page 1
  397 001e 0124     		movs	r4, #1
  398 0020 8DF80740 		strb	r4, [sp, #7]
   57:Core/Src/NRF24L01.c ****     NRF24L01_Write_Register(NRF24L01_REG_EN_AA, &data);
-ARM GAS  C:\Users\user-pc\AppData\Local\Temp\ccx6CTGz.s 			page 9
+ARM GAS  C:\Users\user-pc\AppData\Local\Temp\ccP7vYqf.s 			page 9
 
 
  399              		.loc 1 57 5 is_stmt 1 view .LVU71
@@ -538,7 +538,7 @@ ARM GAS  C:\Users\user-pc\AppData\Local\Temp\ccx6CTGz.s 			page 1
  439 0068 8DF80730 		strb	r3, [sp, #7]
   72:Core/Src/NRF24L01.c ****     NRF24L01_Write_Register(NRF24L01_REG_FEATURE, &data);
  440              		.loc 1 72 5 is_stmt 1 view .LVU86
-ARM GAS  C:\Users\user-pc\AppData\Local\Temp\ccx6CTGz.s 			page 10
+ARM GAS  C:\Users\user-pc\AppData\Local\Temp\ccP7vYqf.s 			page 10
 
 
  441 006c 0DF10701 		add	r1, sp, #7
@@ -598,7 +598,7 @@ ARM GAS  C:\Users\user-pc\AppData\Local\Temp\ccx6CTGz.s 			page 1
  487 0014 0DF10701 		add	r1, sp, #7
  488 0018 0020     		movs	r0, #0
  489 001a FFF7FEFF 		bl	NRF24L01_Write_Register
-ARM GAS  C:\Users\user-pc\AppData\Local\Temp\ccx6CTGz.s 			page 11
+ARM GAS  C:\Users\user-pc\AppData\Local\Temp\ccP7vYqf.s 			page 11
 
 
  490              	.LVL44:
@@ -658,7 +658,7 @@ ARM GAS  C:\Users\user-pc\AppData\Local\Temp\ccx6CTGz.s 			page 1
  529 005e 0DF10701 		add	r1, sp, #7
  530 0062 1D20     		movs	r0, #29
  531 0064 FFF7FEFF 		bl	NRF24L01_Write_Register
-ARM GAS  C:\Users\user-pc\AppData\Local\Temp\ccx6CTGz.s 			page 12
+ARM GAS  C:\Users\user-pc\AppData\Local\Temp\ccP7vYqf.s 			page 12
 
 
  532              	.LVL49:
@@ -718,7 +718,7 @@ ARM GAS  C:\Users\user-pc\AppData\Local\Temp\ccx6CTGz.s 			page 1
  106:Core/Src/NRF24L01.c ****     uint8_t tx_data, rx_data;
  580              		.loc 1 106 5 is_stmt 1 view .LVU114
  107:Core/Src/NRF24L01.c **** 
-ARM GAS  C:\Users\user-pc\AppData\Local\Temp\ccx6CTGz.s 			page 13
+ARM GAS  C:\Users\user-pc\AppData\Local\Temp\ccP7vYqf.s 			page 13
 
 
  108:Core/Src/NRF24L01.c ****     NRF24L01_Write_Payload(data, length); // Write data into TX FIFO
@@ -778,7 +778,7 @@ ARM GAS  C:\Users\user-pc\AppData\Local\Temp\ccx6CTGz.s 			page 1
  621              	.LCFI21:
  622              		.cfi_restore_state
  118:Core/Src/NRF24L01.c ****         NRF24L01_Write_Register(NRF24L01_REG_STATUS, &tx_data); // ...clear MAX_RT bit
-ARM GAS  C:\Users\user-pc\AppData\Local\Temp\ccx6CTGz.s 			page 14
+ARM GAS  C:\Users\user-pc\AppData\Local\Temp\ccP7vYqf.s 			page 14
 
 
  623              		.loc 1 118 9 is_stmt 1 view .LVU124
@@ -838,7 +838,7 @@ ARM GAS  C:\Users\user-pc\AppData\Local\Temp\ccx6CTGz.s 			page 1
  673              		.file 3 "c:\\program files (x86)\\gnu arm embedded toolchain\\10 2020-q4-major\\arm-none-eabi\\inc
  674              		.file 4 "Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f411xe.h"
  675              		.file 5 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_def.h"
-ARM GAS  C:\Users\user-pc\AppData\Local\Temp\ccx6CTGz.s 			page 15
+ARM GAS  C:\Users\user-pc\AppData\Local\Temp\ccP7vYqf.s 			page 15
 
 
  676              		.file 6 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_gpio.h"
@@ -846,33 +846,33 @@ ARM GAS  C:\Users\user-pc\AppData\Local\Temp\ccx6CTGz.s 			page 1
  678              		.file 8 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_spi.h"
  679              		.file 9 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h"
  680              		.file 10 "Core/Inc/spi.h"
-ARM GAS  C:\Users\user-pc\AppData\Local\Temp\ccx6CTGz.s 			page 16
+ARM GAS  C:\Users\user-pc\AppData\Local\Temp\ccP7vYqf.s 			page 16
 
 
 DEFINED SYMBOLS
                             *ABS*:00000000 NRF24L01.c
-C:\Users\user-pc\AppData\Local\Temp\ccx6CTGz.s:18     .text.NRF24L01_Read_Register:00000000 $t
-C:\Users\user-pc\AppData\Local\Temp\ccx6CTGz.s:26     .text.NRF24L01_Read_Register:00000000 NRF24L01_Read_Register
-C:\Users\user-pc\AppData\Local\Temp\ccx6CTGz.s:83     .text.NRF24L01_Read_Register:0000003c $d
-C:\Users\user-pc\AppData\Local\Temp\ccx6CTGz.s:89     .text.NRF24L01_Write_Register:00000000 $t
-C:\Users\user-pc\AppData\Local\Temp\ccx6CTGz.s:96     .text.NRF24L01_Write_Register:00000000 NRF24L01_Write_Register
-C:\Users\user-pc\AppData\Local\Temp\ccx6CTGz.s:153    .text.NRF24L01_Write_Register:00000040 $d
-C:\Users\user-pc\AppData\Local\Temp\ccx6CTGz.s:159    .text.NRF24L01_Read_Payload:00000000 $t
-C:\Users\user-pc\AppData\Local\Temp\ccx6CTGz.s:166    .text.NRF24L01_Read_Payload:00000000 NRF24L01_Read_Payload
-C:\Users\user-pc\AppData\Local\Temp\ccx6CTGz.s:253    .text.NRF24L01_Read_Payload:00000054 $d
-C:\Users\user-pc\AppData\Local\Temp\ccx6CTGz.s:259    .text.NRF24L01_Write_Payload:00000000 $t
-C:\Users\user-pc\AppData\Local\Temp\ccx6CTGz.s:266    .text.NRF24L01_Write_Payload:00000000 NRF24L01_Write_Payload
-C:\Users\user-pc\AppData\Local\Temp\ccx6CTGz.s:353    .text.NRF24L01_Write_Payload:00000054 $d
-C:\Users\user-pc\AppData\Local\Temp\ccx6CTGz.s:359    .text.NRF24L01_Initialise_Tx:00000000 $t
-C:\Users\user-pc\AppData\Local\Temp\ccx6CTGz.s:366    .text.NRF24L01_Initialise_Tx:00000000 NRF24L01_Initialise_Tx
-C:\Users\user-pc\AppData\Local\Temp\ccx6CTGz.s:455    .text.NRF24L01_Initialise_Rx:00000000 $t
-C:\Users\user-pc\AppData\Local\Temp\ccx6CTGz.s:462    .text.NRF24L01_Initialise_Rx:00000000 NRF24L01_Initialise_Rx
-C:\Users\user-pc\AppData\Local\Temp\ccx6CTGz.s:552    .text.NRF24L01_Initialise_Rx:00000080 $d
-C:\Users\user-pc\AppData\Local\Temp\ccx6CTGz.s:557    .text.NRF24L01_Transmit:00000000 $t
-C:\Users\user-pc\AppData\Local\Temp\ccx6CTGz.s:564    .text.NRF24L01_Transmit:00000000 NRF24L01_Transmit
-C:\Users\user-pc\AppData\Local\Temp\ccx6CTGz.s:637    .text.NRF24L01_Transmit:00000054 $d
-C:\Users\user-pc\AppData\Local\Temp\ccx6CTGz.s:642    .text.NRF24L01_Receive:00000000 $t
-C:\Users\user-pc\AppData\Local\Temp\ccx6CTGz.s:649    .text.NRF24L01_Receive:00000000 NRF24L01_Receive
+C:\Users\user-pc\AppData\Local\Temp\ccP7vYqf.s:18     .text.NRF24L01_Read_Register:00000000 $t
+C:\Users\user-pc\AppData\Local\Temp\ccP7vYqf.s:26     .text.NRF24L01_Read_Register:00000000 NRF24L01_Read_Register
+C:\Users\user-pc\AppData\Local\Temp\ccP7vYqf.s:83     .text.NRF24L01_Read_Register:0000003c $d
+C:\Users\user-pc\AppData\Local\Temp\ccP7vYqf.s:89     .text.NRF24L01_Write_Register:00000000 $t
+C:\Users\user-pc\AppData\Local\Temp\ccP7vYqf.s:96     .text.NRF24L01_Write_Register:00000000 NRF24L01_Write_Register
+C:\Users\user-pc\AppData\Local\Temp\ccP7vYqf.s:153    .text.NRF24L01_Write_Register:00000040 $d
+C:\Users\user-pc\AppData\Local\Temp\ccP7vYqf.s:159    .text.NRF24L01_Read_Payload:00000000 $t
+C:\Users\user-pc\AppData\Local\Temp\ccP7vYqf.s:166    .text.NRF24L01_Read_Payload:00000000 NRF24L01_Read_Payload
+C:\Users\user-pc\AppData\Local\Temp\ccP7vYqf.s:253    .text.NRF24L01_Read_Payload:00000054 $d
+C:\Users\user-pc\AppData\Local\Temp\ccP7vYqf.s:259    .text.NRF24L01_Write_Payload:00000000 $t
+C:\Users\user-pc\AppData\Local\Temp\ccP7vYqf.s:266    .text.NRF24L01_Write_Payload:00000000 NRF24L01_Write_Payload
+C:\Users\user-pc\AppData\Local\Temp\ccP7vYqf.s:353    .text.NRF24L01_Write_Payload:00000054 $d
+C:\Users\user-pc\AppData\Local\Temp\ccP7vYqf.s:359    .text.NRF24L01_Initialise_Tx:00000000 $t
+C:\Users\user-pc\AppData\Local\Temp\ccP7vYqf.s:366    .text.NRF24L01_Initialise_Tx:00000000 NRF24L01_Initialise_Tx
+C:\Users\user-pc\AppData\Local\Temp\ccP7vYqf.s:455    .text.NRF24L01_Initialise_Rx:00000000 $t
+C:\Users\user-pc\AppData\Local\Temp\ccP7vYqf.s:462    .text.NRF24L01_Initialise_Rx:00000000 NRF24L01_Initialise_Rx
+C:\Users\user-pc\AppData\Local\Temp\ccP7vYqf.s:552    .text.NRF24L01_Initialise_Rx:00000080 $d
+C:\Users\user-pc\AppData\Local\Temp\ccP7vYqf.s:557    .text.NRF24L01_Transmit:00000000 $t
+C:\Users\user-pc\AppData\Local\Temp\ccP7vYqf.s:564    .text.NRF24L01_Transmit:00000000 NRF24L01_Transmit
+C:\Users\user-pc\AppData\Local\Temp\ccP7vYqf.s:637    .text.NRF24L01_Transmit:00000054 $d
+C:\Users\user-pc\AppData\Local\Temp\ccP7vYqf.s:642    .text.NRF24L01_Receive:00000000 $t
+C:\Users\user-pc\AppData\Local\Temp\ccP7vYqf.s:649    .text.NRF24L01_Receive:00000000 NRF24L01_Receive
 
 UNDEFINED SYMBOLS
 HAL_GPIO_WritePin
