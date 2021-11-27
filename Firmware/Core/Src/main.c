@@ -1,5 +1,6 @@
 #include "main.h"
 #include "adc.h"
+#include "dma.h"
 #include "spi.h"
 #include "usb_device.h"
 #include "usbd_cdc_if.h"
@@ -13,6 +14,7 @@ int main(void)
   HAL_Init();
   SystemClock_Config();
   MX_GPIO_Init();
+  MX_DMA_Init();
   MX_SPI3_Init();
   MX_USB_DEVICE_Init();
   MX_ADC1_Init();
@@ -22,17 +24,15 @@ int main(void)
   NRF24L01_Initialise_Tx();
   HAL_Delay(500);
 
-  uint16_t pot_value = 0;
+  uint32_t pot_value = 0;
 
   while (1)
   {
-    // Read the potentiometer value from ADC
-    HAL_ADC_Start(&hadc1);
-    HAL_ADC_PollForConversion(&hadc1, 1);
-    pot_value = HAL_ADC_GetValue(&hadc1);
+    // Read the potentiometer value from the ADC via DMA
+    HAL_ADC_Start_DMA(&hadc1, &pot_value, 1);
 
-    // Send the potentiometer value via radio
-    NRF24L01_Transmit((uint8_t *)&pot_value, sizeof(pot_value));
+    // Transmit the potentiometer value via radio
+    NRF24L01_Transmit((uint8_t *)&pot_value, 2);
 
     HAL_Delay(10);
   }
